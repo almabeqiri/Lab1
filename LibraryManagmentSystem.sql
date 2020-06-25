@@ -2,7 +2,7 @@ create database LibraryManagmentSystem
 use LibraryManagmentSystem
 
 create table Stafi(
-Stafi_Id int primary key,
+Stafi_Id int IDENTITY (1,1) primary key,
 S_Emri varchar(40) not null,
 S_Mbiemri varchar(50) not null,
 S_Tel varchar(30) not null,
@@ -26,7 +26,7 @@ K_Email varchar(100) not null
 )
 
 create table Autori(
-A_Id int primary key,
+A_Id int IDENTITY (1,1) primary key,
 A_Emri varchar(50) not null,
 A_Mbiemri varchar(50) not null,
 A_Vendlindja varchar(50) not null,
@@ -38,22 +38,25 @@ insert into Autori values (2,'Sami','Frasheri','00,00,1997')
 
 
 Create table Kategoria_Librit(
-Kategoria_Id int primary key,
+Kategoria_Id int IDENTITY (1,1) primary key,
 KL_Emri varchar(50) not null,
 KL_Sasia varchar(50) not null,
 )
 
 
-insert into Kategoria_Librit values (1, 'Drama' , '1')
+insert into Kategoria_Librit values ('Drama' , '1')
 insert into Kategoria_Librit values (2, 'Romance' , '2')
 
 create table Libri_Autoret(
 ISBN varchar(100),
-A_Id int,
+A_Id int ,
 foreign key(ISBN) references Libri(ISBN),
 foreign key(A_Id) references Autori(A_Id),
 unique(ISBN,A_Id)
 )
+
+
+
  
 create table Libri(
 ISBN varchar(100) primary key,
